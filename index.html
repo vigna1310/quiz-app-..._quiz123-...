@@ -1,0 +1,137 @@
+Here's a complete, simple quiz web app that you can deploy directly on GitHub Pages. It features a question "What is 2 + 2?", multiple choice options, and reveals whether the selected answer is correct or not.
+
+Just copy the following code into a file named `index.html` and push it to your GitHub repository's root. Your GitHub Pages site will serve this page.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple Math Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .quiz-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+    }
+
+    button {
+      padding: 10px;
+      margin: 6px 0;
+      font-size: 1em;
+      cursor: pointer;
+      border: 2px solid #333;
+      border-radius: 4px;
+      background-color: #fff;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Style for feedback message */
+    #feedback {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+      height: 1.2em; /* to prevent layout shift */
+      text-align: center;
+    }
+
+    /* Optional: green for correct, red for incorrect */
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Simple Math Quiz</h1>
+    <div class="question">What is 2 + 2?</div>
+    <div class="choices">
+      <button data-answer="2">2</button>
+      <button data-answer="3">3</button>
+      <button data-answer="4">4</button>
+      <button data-answer="5">5</button>
+    </div>
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    // Define the correct answer
+    const correctAnswer = "4";
+
+    // Get all answer buttons
+    const buttons = document.querySelectorAll('.choices button');
+
+    // Get feedback container
+    const feedback = document.getElementById('feedback');
+
+    // Add click event to each button
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedAnswer = button.getAttribute('data-answer');
+
+        // Clear previous feedback
+        feedback.textContent = '';
+
+        if (selectedAnswer === correctAnswer) {
+          feedback.textContent = 'Correct!';
+          feedback.className = 'correct';
+        } else {
+          feedback.textContent = 'Incorrect. Try again!';
+          feedback.className = 'incorrect';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+```
+
+### How it works:
+- Presents a question and four answer options.
+- When a user clicks an option, it displays whether they are correct or wrong.
+- The feedback text appears below the options with color cues.
+
+### Deployment:
+- Save this code as `index.html` in your project repository.
+- Push to GitHub.
+- Enable GitHub Pages in your repository settings (usually from the "Pages" tab).
+- Your quiz will be live at `https://<your-github-username>.github.io/<repository-name>/`.
+
+Feel free to customize the question, options, styling, or add more questions!
